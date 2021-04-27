@@ -1,4 +1,4 @@
-# cs3200_market
+# Stock Market
 DB Design Final Project (Django + React + MySQL)
 
 # Struture Notes
@@ -20,33 +20,33 @@ I used Django (a Python ORM) to create these databases then performed an export 
 
 
 # Additional Notes
-Have some experience with Django, was really using this as an opportunity to learn more React, tried to make components reusable across all endpoints. 
+I have some experience with Django, was really using this as an opportunity to learn more React, tried to make components reusable across all endpoints. 
 
 I have developed this using pythonanywhere.com, not my local system, so there may be some slight changes required before deploying on a local machine. 
 Working example can be found at https://www.naturewallpapers.xyz/market/users
 
-# Problem statement - describe the problem that your project is trying to solve
-
-This project is modelling a stock market
-
-# Solution statement - describe the solution you implemented to solve the problem
-# User - describe the typical user(s) that would use your solution
-# Domain objects - describe at least two of the domain objects you implemented in your solution
-
-Team members: Bassel Abdelbaki (solo, section 3)
-
-Project Name: Stock Market
-
-
-
-Brief Description: This project is meant to model the administrator of a stock market. 
-Users can buy or sell stock from each other, and they have cash balances and stock 
-balances that reflect the appropriate transactions.
-
 Data model: found in db_design_final_project_database.pdf
 
-User data model: Users can create accounts, then they can deposit or withdraw cash to these
-accounts. The users can buy and sell stock from other users. 
+# Problem statement 
+
+This project is modelling a stock market. Users can buy and sell shares of different stocks to each other. They can also deposit and withdraw cash in order to fund these purchases. Histories of all transactions and external transfers are logged, and the appropriate calculations are made to ensure cash and stock actually moves in between users.
+A few questions this project could answer: What is Jeff Bezos's current cash balance? How many shares of Amazon did Cathie Wood buy from Jeff Bezos, and what was the price per share? How many shares of Apple does Tim Cook have? How much cash did Elon Musk withdraw?
+
+# Solution statement
+
+To incorporate this stock market along with a graphical interface, there are a few components. First is the Django (Python) backend. Here models for each of the domain objects are defined, along with helper functions to ensure transactions actually move cash and shares around. Django's migration features were then used to construct the tables. Using the Django REST Framework toolkit, API endpoints were set up for each of the objects so that the models can be accessed and manipulated via HTTP. This was used for a React front-end, where the "administrator" can create, read, update, and delete users, stocks, incomplete transactions, and external transfers. The administrator can also view stock balances and completed transactions, but they cannot be directly updated or deleted to represent the real-world implementation of this. 
+
+The answers to the questions above can be easily found using the GUI
+Jeff Bezos currently has $17,610,000.00 in cash
+Cathie Wood purchased 5000 shares of Amazon at $3,100 each
+Tim Cook has $1,000,000 shares of Apple
+Elon Musk withdrew $500 
+
+# User 
+
+The solution as it stands could be used by stock brokers to manage their clients' stocks and by the clients to view their portfolio. It could also be used by companies looking to go public, as this gives them a way for others to buy and sell shares of their stock. If this solution were to be extended with sign-up/login features and restrictions on permissions, the users themselves could submit transactions and this could be used by any individual looking to invest in stocks, similar to a Robinhood type application.  This solution could also be easily extended to any kind of auction-based marketplace. Stocks are what I thought of but this structure could be used for something like administrating eBay auctions or the StockX clothing collection.
+
+# Domain objects and Relationships
 
 Stock data model: Represents a listing in the stock market. Has a defined number of shares which
 is first given to the Stock's owner, then these shares can be traded among users. Includes stock
@@ -76,31 +76,3 @@ is a one-to-one relationship.
 User <-> (Transaction <-> Stock) <-> User
 Users can submit buy or sell orders for specific stocks, which can be completed by another
 user. This will also include corresponding changes in stock balances and cash balances.
-
-Portable enumeration:
-I incorporated the portable enumeration for a Stock's industry using the following:
-
-INDUSTRY_CHOICES = (
-        ("tech", "Information Technology"),
-        ("energy", "Energy"),
-        ("materials", "Materials"),
-        ("utilities", "Utilities"),
-        ("healthcare", "Healthcare"),
-        ("financial", "Financial")
-    )
-industry = models.CharField(max_length = 30, choices = INDUSTRY_CHOICES)
-
-
-I know we were instructed to use a separate lookup table to ensure functionality across different vendors
-but Django's "choices" argument allows for easy implementation of this across  multiple vendors so I thought 
-this captured the spirit of the task
-
-User interface requirement: The administrator can create, read, update, or delete users from a list view,
-and access their profile using links. The profile shows their transactions, stock balances, 
-and external transfers. The administrator can create, read, update, or delete stocks from a list 
-view and access a detailed view using links. This includes a transaction list, stock balance list, and link to the owner's profile.
-The administrator can create, update, or delete incomplete transactions from a list view, which
-includes links to a detail view with additional links to its participating users and relevant stock.
-The administrator can read stock balances in a list view. All changes will be handled by 
-changes to the transaction. The administrator can create and read external transfers in a list view.
-I have been selective about the permissions to replicate what the real-world for this might look like.
