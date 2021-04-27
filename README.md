@@ -2,6 +2,8 @@
 DB Design Final Project (Django + React + MySQL)
 
 # Struture Notes
+Working example can be found at https://www.naturewallpapers.xyz/market/users
+
 Database connection settings found in core/settings.py
 
 URL routing found in core/urls.py
