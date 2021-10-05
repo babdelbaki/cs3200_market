@@ -40,8 +40,11 @@ To incorporate this stock market along with a graphical interface, there are a f
 
 The answers to the questions above can be easily found using the GUI
 Jeff Bezos currently has $17,610,000.00 in cash
+
 Cathie Wood purchased 5000 shares of Amazon at $3,100 each
+
 Tim Cook has $1,000,000 shares of Apple
+
 Elon Musk withdrew $500 
 
 # User 
