@@ -39,6 +39,7 @@ A few questions this project could answer: What is Jeff Bezos's current cash bal
 To incorporate this stock market along with a graphical interface, there are a few components. First is the Django (Python) backend. Here models for each of the domain objects are defined, along with helper functions to ensure transactions actually move cash and shares around. Django's migration features were then used to construct the tables. Using the Django REST Framework toolkit, API endpoints were set up for each of the objects so that the models can be accessed and manipulated via HTTP. This was used for a React front-end, where the "administrator" can create, read, update, and delete users, stocks, incomplete transactions, and external transfers. The administrator can also view stock balances and completed transactions, but they cannot be directly updated or deleted to represent the real-world implementation of this. 
 
 The answers to the questions above can be easily found using the GUI
+
 Jeff Bezos currently has $17,610,000.00 in cash
 
 Cathie Wood purchased 5000 shares of Amazon at $3,100 each
